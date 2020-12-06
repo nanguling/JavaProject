@@ -1,0 +1,64 @@
+任务：在线考试管理系统--用户信息管理模块
+
+子任务：
+    用户信息注册
+    用户信息查询
+    用户信息删除
+    用户信息更新
+
+准备工作：
+    1.创建用户信息表 users.frm
+
+    create table users(
+       id int primary key auto_increment,   #用户编号 auto_increment自增序列
+       name varchar(20),                    #用户姓名
+       password varchar(20),                #用户密码
+       sex char(1),                         #用户性别 '男' '女'
+       email varchar(30)                    #用户邮箱
+    );
+    insert into users(name,password,sex,email)
+    values ('mike','132','男','mike@qq.com');
+
+    insert into users(name,password,sex,email)
+    values ('smith','132','男','smith@qq.com');
+
+    insert into users(name,password,sex,email)
+    values ('tom','132','男','tom@qq.com');
+
+    insert into users(name,password,sex,email)
+    values ('king','132','男','king@qq.com');
+
+    2.在src下 com.mystudy.entity.Users 实体类
+
+    3.在src下 com.mystudy.util.JdbcUtil 工具类【复用】
+
+    4.在web下WEB-INF下创建一个lib文件夹，存放mysql提供Jdbc实现jar包
+
+任务：在线考试管理系统--试题信息管理模块
+
+子任务：
+        添加试题
+        查询试题
+        删除试题
+        更新试题
+准备工作：
+    1.准备试题信息表：单选题，每道题四个选项 1个正确答案
+        create table question(
+            id int primary key auto_increment,
+            title varchar(50),#10-8=？
+            optionA varchar(20),#A: 9
+            optionB varchar(20),#B: 6
+            optionC varchar(20),#C: 2
+            optionD varchar(20),#D: 1
+            answer char(1) #正确答案：C
+        )
+    2.实体类：com.mystudy.entity.Question
+
+开发任务：随机出题功能
+
+任务描述：用户点击【参加考试】，系统【随机】提取四道考试题交给用户
+
+开发任务：在线阅卷
+
+    1.根据用户提供的答案与正确答案比较，得到用户的分数
+    2.将用户的分数交给score.jsp做输出

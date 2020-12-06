@@ -1,0 +1,8 @@
+					JSP文件运行原理
+一。Http服务器调用JSP文件步骤：
+	1.Http服务器将JSP文件的内容【编辑】为一个Servlet接口实现类(.java)
+	2.Http服务器将Servlet接口实现类【编译】为一个.class文件
+	3.Http服务器负责创建这个class的实例对象，这个实例对象就是Servlet实例对象
+	4.Http服务器通过Servlet实例对象调用_jspService方法，将JSP文件内容写入到响应体中
+二。Http服务器【编辑】与【编译】JSP文件的位置
+	在【work】文件夹下可以看到.java和.class文件
