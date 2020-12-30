@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.dao.ArticleDao">
+
+    <!--查询当前用户下的所有文章-->
+    <select id="select" resultType="org.example.entity.Article">
+        select id,title from article where user_id=#{id}
+    </select>
+
+    <!--当前用户添加文章-->
+    <insert id="add">
+        insert into article (title,content,user_id) values (#{title},#{content},#{userId})
+    </insert>
+
+    <!--查询当前用户某一篇文章-->
+    <select id="selectOne" resultType="Article">
+        select title,content from article where id=#{id}
+    </select>
+
+    <!--修改某一篇文章-->
+    <update id="upDate">
+        update article set title=#{title},content=#{content} where id=#{id}
+    </update>
+
+    <!--删除一篇或者多篇文章-->
+    <delete id="delete">
+        delete from article where id in(
+            <foreach collection="list" item="id" separator=",">
+                #{id}
+            </foreach>
+            )
+    </delete>
+
+</mapper>

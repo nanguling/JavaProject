@@ -1,0 +1,35 @@
+基于SSM开发的个人博客系统：
+
+项目准备：
+1.使用myboke数据库，使用user表（id,username,password,nickname,birthday,phone_number,email,head）
+                     article表（id,title,content,user_id,create_time,read_times）
+2.新建maven web项目
+3.加入依赖
+    1）spring依赖
+    2）springMVC依赖
+    3）mybatis依赖
+    4）servlet依赖
+    5）jsp依赖
+    6）mysql驱动
+    7）druid连接池
+    8）mybatis和spring集成依赖
+    9）监听器依赖
+    10）百度富文本编辑器依赖
+4.创建springmvc配置文件
+    1）声明组件扫描器：负责创建Controller对象
+    2）声明视图解析器
+    3）声明注解驱动
+    4）解决静态资源不能访问
+5.创建数据库属性配置文件
+6.创建spring配置文件
+    1）声明数据库属性配置扫描器
+    2）声明数据源
+    3）声明SqlSessionFactory对象
+    4）声明dao对象
+    5）声明service对象
+    6）声明事务处理器（此项目中可以不使用事务）
+7.创建mybatis主配置文件
+8.配置web.xml文件：
+    1）声明中央调度器DispatherServlet，负责接收所有的用户请求
+    2）注册监听器，在tomcat启动时负责创建spring容器对象，并将容器中的对象负责创建
+    3）声明过滤器，负责设置每次请求和响应的字符集编码以及判断用户请求的合法性（是否恶意登陆）
