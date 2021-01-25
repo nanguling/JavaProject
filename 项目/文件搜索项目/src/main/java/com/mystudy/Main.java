@@ -1,5 +1,6 @@
 package com.mystudy;
 
+import com.mystudy.service.DBService;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -27,6 +28,8 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+        DBService service = new DBService();
+        service.init();
         launch(args);
     }
 }

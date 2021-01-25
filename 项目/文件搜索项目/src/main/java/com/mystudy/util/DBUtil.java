@@ -13,19 +13,16 @@ import java.sql.SQLException;
 public class DBUtil {
     private static volatile DataSource dataSource = null;
 
-    private static String getDatabasePath() {
-        String classPath = DBUtil.class.getProtectionDomain().getCodeSource().getLocation().getFile();
-        String decode = null;
-        try {
-            decode = URLDecoder.decode(classPath,"utf-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        File file = new File(decode);
-        String path = file.getAbsolutePath() + "/searcher.db";
-        LogUtil.log("数据库的执行路径为： %s",path);
-        return path;
+    public static Connection getConnection() {
+        return connectionThreadLocal.get();
     }
+
+    private static final ThreadLocal<Connection> connectionThreadLocal = new ThreadLocal<Connection>() {
+        @Override
+        protected Connection initialValue() {
+            return initConnection();
+        }
+    };
 
     //关于单例的二次判断模式
     public static Connection initConnection() {
@@ -46,14 +43,6 @@ public class DBUtil {
         }
     }
 
-    private static final ThreadLocal<Connection> connectionThreadLocal = new ThreadLocal<Connection>() {
-        @Override
-        protected Connection initialValue() {
-            return initConnection();
-        }
-    };
-
-
     private static void initDataSource() {
         SQLiteDataSource sqLiteDataSource = new SQLiteDataSource();
         String url = "jdbc:sqlite://"+getDatabasePath();
@@ -61,8 +50,16 @@ public class DBUtil {
         dataSource = sqLiteDataSource;
     }
 
-    public static Connection getConnection() {
-        return connectionThreadLocal.get();
+    private static String getDatabasePath() {
+        String classPath = DBUtil.class.getProtectionDomain().getCodeSource().getLocation().getFile();
+        try {
+            String decode = URLDecoder.decode(classPath, "utf-8");
+            File file = new File(decode);
+            String path = file.getParent() + File.separator + "searcher.db";
+            LogUtil.log("数据库的执行路径为： %s", path);
+            return path;
+        }catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
     }
-
 }
