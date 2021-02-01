@@ -55,7 +55,7 @@ public class AppController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         //会在FXMLLoader执行时，实例化AppController后调用
         StringProperty stringProperty = searchField.textProperty();
-        stringProperty.addListener((observable, oldValue, newValue) -> {
+        stringProperty.addListener((observable, oldValue, newValue) -> {    
             List<FileMeta> fileMetas = fileService.query(newValue.trim());
             Platform.runLater(() -> {
                 fileTable.getItems().clear();
