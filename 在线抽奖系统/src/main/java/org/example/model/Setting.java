@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 抽奖设置
@@ -30,4 +31,10 @@ public class Setting {
      * 创建时间
      */
     private Date createTime;
+
+    private User user;
+
+    private List<Award> awards;
+
+    private List<Member> members;
 }

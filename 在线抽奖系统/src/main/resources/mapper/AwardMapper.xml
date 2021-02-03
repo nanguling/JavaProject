@@ -95,4 +95,7 @@
       create_time = #{createTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectBySettingId" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/> from award where setting_id = #{id}
+  </select>
 </mapper>

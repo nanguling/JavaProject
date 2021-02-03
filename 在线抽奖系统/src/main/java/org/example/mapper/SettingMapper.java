@@ -6,4 +6,5 @@ import org.example.model.Setting;
 
 @Mapper
 public interface SettingMapper extends BaseMapper<Setting> {
+    Setting selectByUserId(Integer id);
 }

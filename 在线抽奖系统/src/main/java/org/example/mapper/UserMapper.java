@@ -6,4 +6,5 @@ import org.example.model.User;
 
 @Mapper
 public interface UserMapper extends BaseMapper<User> {
+    User selectByUserName(String username);
 }
