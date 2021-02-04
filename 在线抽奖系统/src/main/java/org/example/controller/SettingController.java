@@ -52,4 +52,11 @@ public class SettingController {
         setting.setMembers(members);
         return setting;
     }
+
+    @GetMapping("/update")
+    public Object update(Integer batchNumber,HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        int res = settingService.update(batchNumber,user.getId());
+        return null;
+    }
 }

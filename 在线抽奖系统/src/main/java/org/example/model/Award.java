@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 奖项
@@ -40,4 +41,9 @@ public class Award {
      * 创建时间
      */
     private Date createTime;
+
+    /**
+     * 中奖人员的id集合
+     */
+    private List<Integer> luckyMemberIds;
 }

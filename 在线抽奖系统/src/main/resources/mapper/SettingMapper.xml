@@ -76,4 +76,10 @@
   <select id="selectByUserId" resultMap="BaseResultMap">
     select <include refid="Base_Column_List"/> from setting where user_id = #{id}
   </select>
+  <update id="updateByUserId">
+    update setting set batch_number = #{batchNumber} where user_id = #{userId}
+  </update>
+  <select id="selectIdByUserId" resultType="java.lang.Integer">
+    select id from setting where user_id = #{userid}
+  </select>
 </mapper>

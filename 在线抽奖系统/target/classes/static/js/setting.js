@@ -21,7 +21,7 @@ window.vm = new Vue({
                     {required: true, message: "请输入奖品", trigger: ['blur', 'change']},
                     {max: 20, message: "长度在20个字符以内", trigger: ['blur', 'change']},
                 ],
-            },
+            },  
         },
         members: {
             data: [],

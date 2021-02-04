@@ -4,10 +4,7 @@ import org.example.exception.AppException;
 import org.example.model.User;
 import org.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -53,6 +50,12 @@ public class UserController {
         //把用户头像的http服务路径设置到user的head属性中，把user插入到数据库
         userService.register(user);
 
+        return null;
+    }
+
+    @GetMapping("/logout")
+    public Object logout(HttpSession session) {
+        session.removeAttribute("user");
         return null;
     }
 }

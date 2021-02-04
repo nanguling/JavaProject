@@ -14,4 +14,8 @@ public class SettingService {
     public Setting queryByUserId(Integer id) {
         return settingMapper.selectByUserId(id);
     }
+
+    public int update(Integer batchNumber, Integer userId) {
+        return settingMapper.updateByUserId(batchNumber,userId);
+    }
 }
